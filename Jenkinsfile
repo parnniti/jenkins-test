@@ -13,8 +13,7 @@ pipeline {
                 sh 'ls -la'
                 sh 'node --version'
                 sh 'npm --version'
-                sh 'npm i --save-dev @types/node'
-                sh 'npm i --save-dev typescript'
+                sh 'npm i --save-dev @types/node typescript'
                 sh 'tsc --version'
             }
         }
