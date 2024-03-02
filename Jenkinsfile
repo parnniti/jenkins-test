@@ -3,9 +3,15 @@ pipeline {
     
     agent any
 
+    tools {
+        nodejs 'nodejs16' 
+    }
+
     stages {
         stage('Unit Test') {
             steps {
+                sh 'npm --version'
+                sh 'node --version'
                 echo 'Hello World!'
             }
         }
