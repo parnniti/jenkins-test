@@ -13,6 +13,8 @@ pipeline {
                 sh 'ls -la'
                 sh 'npm --version'
                 sh 'node --version'
+
+                sh 'npm run test:ci'
                 echo 'Hello World!'
             }
         }
