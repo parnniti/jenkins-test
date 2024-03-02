@@ -5,7 +5,10 @@ pipeline {
 
     tools {
         nodejs 'nodejs16' 
-        'hudson.plugins.sonar.SonarRunnerInstallation' 'sqscanner5.0.1'
+    }
+
+    environment {
+        sqscanner_home = tool name: 'sqscanner5.0.1', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
     }
 
     stages {
@@ -17,7 +20,7 @@ pipeline {
                 sh 'npm i --save-dev @types/node typescript'
                 sh 'tsc --version'
 
-                sh 'sqscanner5.0.1 --version'
+                sh 'ls -la ${sqscanner_home}'
             }
         }
 
