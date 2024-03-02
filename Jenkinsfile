@@ -11,9 +11,10 @@ pipeline {
         stage('Prepare') {
             steps {
                 sh 'ls -la'
-                sh 'npm --version'
                 sh 'node --version'
+                sh 'npm --version'
                 sh 'npm i --save-dev @types/node'
+                sh 'tsc --version'
             }
         }
 
