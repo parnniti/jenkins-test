@@ -14,6 +14,7 @@ pipeline {
                 sh 'node --version'
                 sh 'npm --version'
                 sh 'npm i --save-dev @types/node'
+                sh 'npm i --save-dev typescript'
                 sh 'tsc --version'
             }
         }
