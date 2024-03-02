@@ -21,6 +21,7 @@ pipeline {
         stage('Unit Test') {
             steps {
                 script {
+                    echo 'Unit Test'
                     withSonarQubeEnv(installationName: 'sqserver') {
                         echo 'Hello World!'
                     }
