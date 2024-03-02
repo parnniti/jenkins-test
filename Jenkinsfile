@@ -20,8 +20,11 @@ pipeline {
 
         stage('Unit Test') {
             steps {
-                sh 'npm run test:ci'
-                echo 'Hello World!'
+                script {
+                    withSonarQubeEnv(installationName: 'sqserver') {
+                        echo 'Hello World!'
+                    }
+                }
             }
         }
 
