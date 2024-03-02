@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Unit Test') {
             steps {
+                sh 'ls -la'
                 sh 'npm --version'
                 sh 'node --version'
                 echo 'Hello World!'
