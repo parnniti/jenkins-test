@@ -5,7 +5,7 @@ pipeline {
 
     tools {
         nodejs 'nodejs16' 
-        hudson.plugins.sonar.SonarRunnerInstallation  'sqscanner5.0.1'
+        'hudson.plugins.sonar.SonarRunnerInstallation' 'sqscanner5.0.1'
     }
 
     stages {
