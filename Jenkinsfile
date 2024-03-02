@@ -17,7 +17,7 @@ pipeline {
                 sh 'npm i --save-dev @types/node typescript'
                 sh 'tsc --version'
 
-                sh 'sonar-scanner --version'
+                sh 'sqscanner5.0.1 --version'
             }
         }
 
