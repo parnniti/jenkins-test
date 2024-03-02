@@ -8,11 +8,18 @@ pipeline {
     }
 
     stages {
-        stage('Unit Test') {
+        stage('Prepare') {
             steps {
                 sh 'ls -la'
                 sh 'npm --version'
                 sh 'node --version'
+                sh 'npm i --save-dev @types/node'
+            }
+        }
+        
+        stage('Unit Test') {
+            steps {
+
 
                 sh 'npm run test:ci'
                 echo 'Hello World!'
