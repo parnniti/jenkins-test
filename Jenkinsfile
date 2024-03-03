@@ -61,7 +61,7 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build and Push to registry') {
             steps {
                 script {
                     withDockerRegistry([url: 'https://index.docker.io/v1/', credentialsId: 'dockerhub']) {
