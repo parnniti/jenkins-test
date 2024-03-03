@@ -29,8 +29,7 @@ pipeline {
                 script {
                     echo 'Unit Test'
 
-                    sh 'npm run test:ci'
-                    sh 'ls ./coverage'
+                    sh 'npm run test:coverage'
 
                     withSonarQubeEnv(installationName: 'sqserver') {
                         sh '''${sqscanner_home}/bin/sonar-scanner \
@@ -38,7 +37,7 @@ pipeline {
                             -D sonar.projectName=myapp \
                             -D sonar.sources=./src \
                             -D sonar.tests=./test \
-                            -D sonar.junit.reportPaths=./coverage
+                            -D sonar.javascript.lcov.reportPaths=./coverage/lcov.info
                         '''
                     }
                 }
