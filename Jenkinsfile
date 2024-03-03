@@ -30,7 +30,7 @@ pipeline {
                 script {
                     sh 'npm run test:ci'
                     sh 'npm run test:coverage'
-                    sh 'ls -la ./coverage'
+                    sh 'ls -la ./coverage/junit.xml'
 
                     junit './coverage/junit.xml'
 
