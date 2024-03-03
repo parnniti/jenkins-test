@@ -20,7 +20,7 @@ WORKDIR /app
 
 COPY package* /app/
 
-RUN npm install && npm ci
+RUN npm install --package-lock-only && npm ci
 
 COPY --from=tester /app/dist/ ./dist
 
