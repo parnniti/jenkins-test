@@ -5,7 +5,6 @@ pipeline {
 
     tools {
         nodejs 'nodejs16'
-        dependency-check 'depcheck9.0.9'
     }
 
     environment {
