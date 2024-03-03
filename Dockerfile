@@ -20,7 +20,7 @@ WORKDIR /app
 
 COPY package* /app/
 
-RUN ls -la && npm ci
+RUN npm install && npm ci
 
 COPY --from=tester /app/dist/ ./dist
 
