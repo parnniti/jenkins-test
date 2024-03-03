@@ -30,6 +30,7 @@ pipeline {
                     echo 'Unit Test'
 
                     sh 'npm run test:ci'
+                    sh 'ls ./coverage'
 
                     withSonarQubeEnv(installationName: 'sqserver') {
                         sh '''${sqscanner_home}/bin/sonar-scanner \
