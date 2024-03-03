@@ -38,7 +38,7 @@ pipeline {
                             -D sonar.sources=./src \
                             -D sonar.tests=./test \
                             -D sonar.test.inclusions=./test/*.test.ts \
-                            -D sonar.junit.reportPaths=./coverage
+                            -D sonar.junit.reportPaths=./coverage/*.xml
                         '''
                     }
                 }
