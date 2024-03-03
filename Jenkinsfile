@@ -79,7 +79,10 @@ pipeline {
                     branches: [[name: '*/main']],
                     userRemoteConfigs: [[
                         url: 'https://github.com/parnniti/myapp-chart.git'
-                    ]]
+                    ]],
+                    extensions: [
+                        [$class: 'RelativeTargetDirectory', relativeTargetDir: 'chart'],
+                    ],
                 )
 
                 sh 'ls -la'
