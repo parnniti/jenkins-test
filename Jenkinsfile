@@ -17,7 +17,7 @@ pipeline {
                 sh 'ls -la'
                 sh 'node --version'
                 sh 'npm --version'
-                sh 'npm i --save-dev @types/node typescript'
+                sh 'npm i --save-dev @types/node typescript jest @types/jest supertest'
                 sh 'tsc --version'
 
                 sh 'ls -la ${sqscanner_home}'
