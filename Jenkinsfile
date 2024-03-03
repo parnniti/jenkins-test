@@ -84,8 +84,11 @@ pipeline {
                         [$class: 'RelativeTargetDirectory', relativeTargetDir: 'chart'],
                     ],
                 )
-
                 sh 'ls -la chart/'
+
+                withKubeConfig([credentialsId: 'kubeconfig']) {
+                    sh 'kubectl get node'
+                }
             }
         }
     }
