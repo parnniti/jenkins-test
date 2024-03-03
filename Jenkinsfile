@@ -84,9 +84,8 @@ pipeline {
         always {
             cleanWs(
                 patterns: [
-                    [pattern: '*', type: 'EXCLUDE'],
                     [pattern: 'node_modules/*', type: 'INCLUDE'],
-                    [pattern: 'package-lock.json', type: 'INCLUDE']  
+                    [pattern: 'package-lock.json', type: 'INCLUDE']
                 ]
             )
         }
