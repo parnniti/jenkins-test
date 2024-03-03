@@ -31,6 +31,8 @@ pipeline {
                     sh 'npm run test:coverage'
 
                     junit './coverage/junit.xml'
+
+                    sh 'ls -la ./coverage'
                     
                     withSonarQubeEnv(installationName: 'sqserver') {
                         sh '''${sqscanner_home}/bin/sonar-scanner \
