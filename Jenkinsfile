@@ -85,11 +85,11 @@ pipeline {
                         [$class: 'RelativeTargetDirectory', relativeTargetDir: 'chart'],
                     ],
                 )
-                sh 'ls -la chart/'
+                sh 'ls -la ./chart/'
 
                 withKubeConfig([credentialsId: 'kubeconfig']) {
-                    sh 'helm template chart/'
-                    sh "helm upgrade --install $PROJECT_NAME chart/"
+                    sh 'helm template ./chart'
+                    sh "helm upgrade --install $PROJECT_NAME ./chart"
                 }
             }
         }
