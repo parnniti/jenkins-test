@@ -20,8 +20,8 @@ pipeline {
                     npm --version
                     tsc --version
                 '''
-
                 sh 'ls -la ${sqscanner_home}'
+                sh 'npm install'
             }
         }
 
@@ -78,6 +78,12 @@ pipeline {
             steps {
                 echo 'Deployment'
             }
+        }
+    }
+
+    post {
+        always {
+            sh 'rm -rf node_modules/ package-lock.json'
         }
     }
 }
