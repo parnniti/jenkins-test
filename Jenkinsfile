@@ -20,7 +20,6 @@ pipeline {
                     npm --version
                     tsc --version
                 '''
-                sh 'ls -la ${sqscanner_home}'
                 sh 'npm install'
             }
         }
