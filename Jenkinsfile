@@ -83,7 +83,13 @@ pipeline {
 
     post {
         always {
-            sh 'rm -rf node_modules/ package-lock.json'
+            cleanWs(
+                patterns: [
+                    [pattern: '*', type: 'EXCLUDE'],
+                    [pattern: 'node_modules/*', type: 'INCLUDE'],
+                    [pattern: 'package-lock.json', type: 'INCLUDE']  
+                ]
+            )
         }
     }
 }
