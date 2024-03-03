@@ -15,10 +15,11 @@ pipeline {
         stage('Prepare') {
             steps {
                 sh 'ls -la'
-                sh 'node --version'
-                sh 'npm --version'
-                sh 'npm i --save-dev @types/node typescript'
-                sh 'tsc --version'
+                sh '''
+                    node --version
+                    npm --version
+                    tsc --version
+                '''
 
                 sh 'ls -la ${sqscanner_home}'
             }
@@ -29,11 +30,10 @@ pipeline {
                 script {
                     sh 'npm run test:ci'
                     sh 'npm run test:coverage'
+                    sh 'ls -la ./coverage'
 
                     junit './coverage/junit.xml'
 
-                    sh 'ls -la ./coverage'
-                    
                     withSonarQubeEnv(installationName: 'sqserver') {
                         sh '''${sqscanner_home}/bin/sonar-scanner \
                             -D sonar.projectKey=myapp \
