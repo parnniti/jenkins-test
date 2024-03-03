@@ -38,7 +38,7 @@ pipeline {
                             -D sonar.projectName=myapp \
                             -D sonar.sources=./src \
                             -D sonar.tests=./test \
-                            -D sonar.junit.reportPaths=./coverage/*.xml
+                            -D sonar.junit.reportPaths=./coverage
                         '''
                     }
                 }
