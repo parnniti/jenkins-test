@@ -30,12 +30,9 @@ pipeline {
                     echo 'Unit Test'
                     withSonarQubeEnv(installationName: 'sqserver') {
                         sh '''${sqscanner_home}/bin/sonar-scanner \
-                            -D sonar.projectKey=YOUR_PROJECT_KEY_HERE \
-                            -D sonar.projectName=YOUR_PROJECT_NAME_HERE \
-                            -D sonar.projectVersion=YOUR_PROJECT_VERSION_HERE \
+                            -D sonar.projectKey=myapp \
+                            -D sonar.projectName=myapp \
                             -D sonar.sources=./src \
-                            -D sonar.test.inclusions=YOUR_INCLUSIONS_HERE \
-                            -D sonar.exclusions=YOUR_EXCLUSIONS_HERE
                         '''
                     }
                 }
