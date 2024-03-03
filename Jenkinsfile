@@ -9,6 +9,7 @@ pipeline {
 
     environment {
         sqscanner_home = tool name: 'sqscanner5.0.1', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+        PROJECT_NAME = 'myapp'
     }
 
     stages {
@@ -34,13 +35,13 @@ pipeline {
                     junit '**/coverage/junit.xml'
 
                     withSonarQubeEnv(installationName: 'sqserver') {
-                        sh '''${sqscanner_home}/bin/sonar-scanner \
-                            -D sonar.projectKey=myapp \
-                            -D sonar.projectName=myapp \
+                        sh """${sqscanner_home}/bin/sonar-scanner \
+                            -D sonar.projectKey=$PROJECT_NAME \
+                            -D sonar.projectName=$PROJECT_NAME \
                             -D sonar.sources=./src \
                             -D sonar.tests=./test \
                             -D sonar.javascript.lcov.reportPaths=./coverage/lcov.info
-                        '''
+                        """
                     }
 
                 }
@@ -65,7 +66,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([url: 'https://index.docker.io/v1/', credentialsId: 'dockerhub']) {
-                        String container_tag = 'pxrn/myapp:v1'
+                        String container_tag = "pxrn/$PROJECT_NAME:v1"
                         sh "docker build --no-cache -f ./Dockerfile -t $container_tag ."
                         sh "docker push $container_tag"
                     }
@@ -78,7 +79,7 @@ pipeline {
                 checkout scmGit(
                     branches: [[name: '*/main']],
                     userRemoteConfigs: [[
-                        url: 'https://github.com/parnniti/myapp-chart.git'
+                        url: "https://github.com/parnniti/$PROJECT_NAME-chart.git"
                     ]],
                     extensions: [
                         [$class: 'RelativeTargetDirectory', relativeTargetDir: 'chart'],
@@ -87,7 +88,8 @@ pipeline {
                 sh 'ls -la chart/'
 
                 withKubeConfig([credentialsId: 'kubeconfig']) {
-                    sh 'helm upgrade --install myapp chart'
+                    sh 'helm template chart/'
+                    sh "helm upgrade --install $PROJECT_NAME chart/"
                 }
             }
         }
