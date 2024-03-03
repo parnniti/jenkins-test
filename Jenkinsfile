@@ -4,7 +4,8 @@ pipeline {
     agent any
 
     tools {
-        nodejs 'nodejs16' 
+        nodejs 'nodejs16'
+        dependency-check 'depcheck9.0.9'
     }
 
     environment {
@@ -46,7 +47,15 @@ pipeline {
 
         stage('OWASP dependencies check') {
             steps {
-                echo 'OWASP'
+                script {
+                    dependencyCheck additionalArguments: ''' 
+                        -o './'
+                        -s './'
+                        -f 'ALL' 
+                        --prettyPrint''', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
+                    
+                    dependencyCheckPublisher pattern: 'dependency-check-report.xml'
+                }
             }
         }
 
