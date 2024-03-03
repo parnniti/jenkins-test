@@ -75,7 +75,14 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                echo 'Deployment'
+                checkout scmGit(
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/parnniti/myapp-chart.git'
+                    ]]
+                )
+
+                sh 'ls -la'
             }
         }
     }
