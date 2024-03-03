@@ -85,7 +85,7 @@ pipeline {
                     ],
                 )
 
-                sh 'ls -la'
+                sh 'ls -la chart/'
             }
         }
     }
