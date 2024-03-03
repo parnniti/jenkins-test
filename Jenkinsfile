@@ -9,6 +9,7 @@ pipeline {
 
     environment {
         sqscanner_home = tool name: 'sqscanner5.0.1', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+        KUBECONFIG = credentials('kubeconfig')
     }
 
     stages {
@@ -86,9 +87,11 @@ pipeline {
                 )
                 sh 'ls -la chart/'
 
-                withKubeConfig([credentialsId: 'kubeconfig']) {
-                    sh 'kubectl get node'
-                }
+                sh 'kubectl get node'
+
+                // withKubeConfig([credentialsId: 'kubeconfig']) {
+                //     sh 'kubectl get node'
+                // }
             }
         }
     }
