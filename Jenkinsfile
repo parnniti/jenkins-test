@@ -33,7 +33,7 @@ pipeline {
                             -D sonar.projectKey=myapp \
                             -D sonar.projectName=myapp \
                             -D sonar.sources=./src \
-                            -D sonar.test.inclusions=./test \
+                            -D sonar.tests=./test \
                         '''
                     }
                 }
