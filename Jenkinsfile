@@ -68,7 +68,7 @@ pipeline {
                     withDockerRegistry([url: 'https://index.docker.io/v1/', credentialsId: 'dockerhub']) {
                         String container_tag = 'pxrn/myapp:v1'
                         sh "docker build --no-cache -f ./Dockerfile -t $container_tag ."
-                        sh 'docker push $container_tag'
+                        sh "docker push $container_tag"
                     }
                 }
             }
