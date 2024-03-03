@@ -87,7 +87,7 @@ pipeline {
                 )
                 sh 'ls -la chart/'
 
-                sh 'kubectl get node'
+                sh 'helm ls'
 
                 // withKubeConfig([credentialsId: 'kubeconfig']) {
                 //     sh 'kubectl get node'
