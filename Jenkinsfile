@@ -27,8 +27,11 @@ pipeline {
         stage('Unit Test') {
             steps {
                 script {
+                    sh 'npm run test:ci'
                     sh 'npm run test:coverage'
 
+                    junit './coverage/junit.xml'
+                    
                     withSonarQubeEnv(installationName: 'sqserver') {
                         sh '''${sqscanner_home}/bin/sonar-scanner \
                             -D sonar.projectKey=myapp \
@@ -38,6 +41,7 @@ pipeline {
                             -D sonar.javascript.lcov.reportPaths=./coverage/lcov.info
                         '''
                     }
+
                 }
             }
         }
