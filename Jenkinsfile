@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(registry: [url: 'https://index.docker.io/v1/', credentialsId: 'dockerhub']) {
-                        String container_tag = 'myapp:v1'
+                        String container_tag = 'pxrn/myapp:v1'
                         sh "docker build -f ./Dockerfile -t $container_tag ."
                         sh 'docker push $container_tag'
                     }
